@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static cms_tags sekizai_tags djangocms_alias_tags menu_tags   %}
+{% block title %}{% page_attribute "page_title" %}{% endblock title %}
+
+
+{% block content %}
+    {% static_alias 'header' %}
+
+    {% comment %} {% show_menu 0 100 100 100 %}  {% endcomment %}
+    {% comment %} {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="{% static "django-cms-logo.png" %}" alt="Logo" class="img-fluid" style="max-height: 40px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    {% block menubar %}{% show_menu 0 100 0 100 'menu/menu.html' %}{% endblock %}
+                </ul>
+                <div class="d-flex">
+                    {% block searchbar %}
+                        <form class="d-flex ms-2">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    {% endblock %}
+                    <!-- Social icons -->
+                    <div class="ms-2">
+                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white ms-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white ms-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white ms-2"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% endblock %} {% endcomment %}
+    
+    <ul>
+        {% show_menu_below_id "meta" %}
+    </ul>
+
+    <div class="container">
+        <ul class="d-lg-block d-lg-flex d-sm-none nav" >
+            {% block breadcrumb %}
+                {% show_breadcrumb %}
+            {% endblock %}
+        </ul>
+    </div>
+
+
+    
+
+
+
+    <div class="content-sections">
+        <div id='main'>
+            {% placeholder "pageheader" %}
+
+            {% placeholder "content" %}
+
+            {% block main %} {% endblock main %}
+        </div>
+    </div>
+
+    <div class="footer-outer">
+        {% static_alias 'footer' %}
+    <div>
+        
+    {% if request.toolbar and request.toolbar.edit_mode %}
+    <div style="display:none;">
+        {% placeholder "Disabled" %}
+    </div>
+    {% endif %}
+        
+{% endblock content %}
