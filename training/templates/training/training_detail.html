@@ -1,0 +1,11 @@
+<!-- training/templates/training/training_detail.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ training.title }}</h1>
+<p>{{ training.description }}</p>
+<p>Trainer ID: {{ training.trainer_id }}</p>
+<p>Event Date: {{ training.event_dt }}</p>
+<!-- Add more fields as needed -->
+<a href="{% url 'training_list' %}">Back to List</a>
+{% endblock %}

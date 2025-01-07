@@ -1,0 +1,8 @@
+<!-- training/templates/training/check_feedback.html -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Check Feedback for {{ training.title }}</h1>
+<!-- Add feedback form or display feedback here -->
+<a href="{% url 'training_list' %}">Back to List</a>
+{% endblock %}

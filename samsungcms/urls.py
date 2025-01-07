@@ -26,6 +26,7 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('filer/', include('filer.urls')),
     path('', include('cms.urls')),
+    path('training/', include('training.urls')),
 )
 
 
