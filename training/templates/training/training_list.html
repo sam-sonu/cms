@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Trainings</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Trainer ID</th>
+            <th>Event Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for training in page_obj %}
+        <tr>
+            <td>{{ training.title }}</td>
+            <td>{{ training.trainer_id }}</td>
+            <td>{{ training.event_dt }}</td>
+            <td>
+                <a href="{% url 'training_detail' training.id %}">Edit</a> |
+                <a href="{% url 'check_feedback' training.id %}">Check Feedback</a> |
+                <a href="{% url 'mark_action' training.id 'done' %}">Done</a> |
+                <a href="{% url 'mark_action' training.id 'rejected' %}">Rejected</a> |
+                <a href="{% url 'mark_action' training.id 'postponed' %}">Postponed</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="pagination">
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+    <span class="current-page">{{ page_obj.number }}</span> / {{ page_obj.paginator.num_pages }}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+    {% endif %}
+</div>
+{% endblock %}

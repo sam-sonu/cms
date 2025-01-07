@@ -40,6 +40,7 @@ TEXT_INLINE_EDITING = True
 
 INSTALLED_APPS = [
     'myplugin',  
+    'training',
     'djangocms_admin_style',
 
     'django.contrib.admin',
