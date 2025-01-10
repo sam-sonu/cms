@@ -39,10 +39,8 @@ TEXT_INLINE_EDITING = True
 # Application definition
 
 INSTALLED_APPS = [
-    'myplugin',  
-    'training',
+    
     'djangocms_admin_style',
-
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -55,8 +53,11 @@ INSTALLED_APPS = [
     'menus',
 
     # 'djangocms_text',
+    'solo.apps.SoloAppConfig',
+    'djangocms_text_ckeditor',
     'djangocms_alias',
     'djangocms_versioning',
+    "snowpenguin.django.recaptcha3",
 
     'sekizai',
     'treebeard',
@@ -83,6 +84,11 @@ INSTALLED_APPS = [
     'djangocms_frontend.contrib.tabs',
     'djangocms_frontend.contrib.utilities',
     
+    #CUSTOM APPS
+    'myplugin',  
+    'training',
+    'events',
+    'form_builder',
     
     # 'djangocms_text_ckeditor',
     "djangocms_file",
@@ -161,11 +167,10 @@ CKEDITOR_SETTINGS = {
     'allowedContent': True,
 }
 
-# STATICFILES_DIRS = [
-#     BASE_DIR / "samsungcms" / "static",
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / "samsungcms" / "static",
+]
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'samsungcms', 'static')]
 # Compression related
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -174,7 +179,7 @@ STATICFILES_FINDERS = (
 )
 DATA_DIR = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 MEDIA_ROOT = os.path.join(DATA_DIR, 'static_collected', 'media')
-STATIC_ROOT = os.path.join(DATA_DIR, 'static_collected', 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_collected', 'static')
 COMPRESS_ROOT = os.path.join(BASE_DIR, 'compressed_files')
 
 # Ensure the directories exist
@@ -238,9 +243,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-# STATIC_URL = 'static/'
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
+MEDIA_ROOT = str(BASE_DIR.parent / "media")
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -294,5 +300,11 @@ INTERNAL_IPS = [
 # Add project-wide static files directory
 # https://docs.djangoproject.com/en/5.1/ref/settings/#media-root
 
-MEDIA_URL = "media/"
-MEDIA_ROOT = str(BASE_DIR.parent / "media")
+
+
+
+
+SRI_API_HOST = ""
+SRI_ACCESS_KEY = ""
+SRI_SECRET_KEY = ""
+SRI_API_PASS = ""

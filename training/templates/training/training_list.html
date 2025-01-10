@@ -1,40 +1,88 @@
+<!-- training/training_list.html -->
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Trainings</h1>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+</style>
+
+<h1>Training Content table Data-</h1>
 <table>
     <thead>
         <tr>
             <th>Title</th>
             <th>Trainer ID</th>
+            <th>Reference Link</th>
+            <th>Description</th>
+            <th>Skill ID</th>
+            <th>Current Level Code</th>
+            <th>Target Level Code</th>
+            <th>Project ID</th>
             <th>Event Date</th>
-            <th>Actions</th>
+            <th>Event Type Code</th>
+            <th>Location</th>
+            <th>User ID Array</th>
+            <th>Status Code</th>
+            <th>Object Code</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Feedback Show Y/N</th>
+            {% comment %} <th>External Survey URL</th>
+            <th>External Survey Y/N</th>
+            <th>Trainer ID Array</th>
+            <th>Show Y/N</th>
+            <th>Program ID</th>
+            <th>Module ID</th>
+            <th>Co-Author ID Array</th> {% endcomment %}
         </tr>
     </thead>
     <tbody>
-        {% for training in page_obj %}
+        {% for training in trainings %}
         <tr>
             <td>{{ training.title }}</td>
             <td>{{ training.trainer_id }}</td>
+            <td>{{ training.ref_link }}</td>
+            <td>{{ training.description }}</td>
+            <td>{{ training.skill_id }}</td>
+            <td>{{ training.current_level_cd }}</td>
+            <td>{{ training.target_level_cd }}</td>
+            <td>{{ training.project_id }}</td>
             <td>{{ training.event_dt }}</td>
-            <td>
-                <a href="{% url 'training_detail' training.id %}">Edit</a> |
-                <a href="{% url 'check_feedback' training.id %}">Check Feedback</a> |
-                <a href="{% url 'mark_action' training.id 'done' %}">Done</a> |
-                <a href="{% url 'mark_action' training.id 'rejected' %}">Rejected</a> |
-                <a href="{% url 'mark_action' training.id 'postponed' %}">Postponed</a>
-            </td>
+            <td>{{ training.event_type_cd }}</td>
+            <td>{{ training.location }}</td>
+            <td>{{ training.user_id_arr }}</td>
+            <td>{{ training.status_cd }}</td>
+            <td>{{ training.obj_cd }}</td>
+            <td>{{ training.start_time }}</td>
+            <td>{{ training.end_time }}</td>
+            <td>{{ training.feedback_show_yn }}</td>
+            {% comment %} <td>{{ training.external_survey_url }}</td>
+            <td>{{ training.external_survey_yn }}</td>
+            <td>{{ training.trainer_id_arr }}</td>
+            <td>{{ training.show_yn }}</td>
+            <td>{{ training.program_id }}</td>
+            <td>{{ training.module_id }}</td>
+            <td>{{ training.co_author_id_arr }}</td> {% endcomment %}
         </tr>
         {% endfor %}
     </tbody>
 </table>
-<div class="pagination">
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-    {% endif %}
-    <span class="current-page">{{ page_obj.number }}</span> / {{ page_obj.paginator.num_pages }}
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">next</a>
-    {% endif %}
-</div>
 {% endblock %}
