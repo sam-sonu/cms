@@ -124,3 +124,13 @@ class DropdownPluginModel(BaseFieldPluginModel):
 
     def __str__(self):
         return self.name
+
+
+
+
+class DynamicData(CMSPlugin):
+    field_name = models.CharField(max_length=255)
+    field_value = models.CharField(max_length=255)
+    
+    def __str__(self): 
+        return f'{self.field_name}: {self.field_value}'

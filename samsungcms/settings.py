@@ -57,11 +57,13 @@ INSTALLED_APPS = [
     'djangocms_text_ckeditor',
     'djangocms_alias',
     'djangocms_versioning',
-    "snowpenguin.django.recaptcha3",
+    # "snowpenguin.django.recaptcha3",
+    'captcha',
 
     'sekizai',
     'treebeard',
     'parler',
+    
 
     'filer',
     'easy_thumbnails',
@@ -308,3 +310,7 @@ SRI_API_HOST = ""
 SRI_ACCESS_KEY = ""
 SRI_SECRET_KEY = ""
 SRI_API_PASS = ""
+
+CAPTCHA_FONT_SIZE = 32
+CAPTCHA_LENGTH = 6
+CAPTCHA_TIMEOUT = 5

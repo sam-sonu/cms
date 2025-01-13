@@ -25,6 +25,10 @@ urlpatterns = i18n_patterns(
     path('jsi18n/', JavaScriptCatalog.as_view(), name='javascript-catalog'),
     path('admin/', admin.site.urls),
     path('filer/', include('filer.urls')),
+    path('captcha/', include('captcha.urls')),
+    
+    path("form-builder/", include("form_builder.urls")),
+
     path('', include('cms.urls')),
 )
 

@@ -1,11 +1,11 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from snowpenguin.django.recaptcha3.fields import ReCaptchaField
+from captcha.fields import CaptchaField
 from .models import MarketingFieldPluginModel
-from common_plugins import utils
-from pos_api.pos_client import PWAPI
+from samsungcms.sri_pos import SMAPI
+
 class formBuilder(forms.Form):
-    captcha = ReCaptchaField(error_messages={'required': "Captcha is required"})
+    captcha = CaptchaField(error_messages={'required': "Captcha is required"})
 
     def __init__(self, *args, **kwargs):
         super(formBuilder, self).__init__(*args, **kwargs)
@@ -31,8 +31,8 @@ class MarketingFieldPluginForm(forms.ModelForm):
 
     def fetch_api_data(self):
         try:
-            client = PWAPI()
-            api_stores = utils.get_stores_data(client=client)
+            client = SMAPI()
+            api_stores = SMAPI.get_stores_data(client=client)
             choices = [(store['id'], store['receipt_name']) for store in api_stores]
         except Exception as e:
             choices = []

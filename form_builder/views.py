@@ -1,6 +1,7 @@
 from django.http import JsonResponse
 from django.views import View
 from .forms import formBuilder
+from .models import DynamicData
 from samsungcms.sri_pos import SMAPI
 from samsungcms.sri_client import SRIClient
 import re
@@ -9,8 +10,8 @@ import re
 class BuilderFormSubmitView(View):
     def post(self, request, *args, **kwargs):
         form = formBuilder(request.POST)
-        if form.is_valid():
-            client = SRIClient()
+        if form.is_valid() == True:
+            client = SMAPI()
             form_data = {}
             # Get user's IP address from the request
             # x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
@@ -19,12 +20,11 @@ class BuilderFormSubmitView(View):
             # else:
             #     form_data['user_ip'] = request.META.get('REMOTE_ADDR')
 
-            store_data = SMAPI.get_stores_data(client=client)
+            store_data = client.call_json_method('get_website_data')
             default_store_id = None
             if len(store_data) > 0:
                 default_store_id = store_data[0].get('id',None)
-            store_id = request.session.get('store_location_id') or \
-                request.COOKIES.get('store_location_id') or default_store_id
+            store_id = request.session.get('store_location_id')
             
             form_data['location_id'] = str(store_id)
             form_data['shop_window'] = 0
@@ -46,7 +46,8 @@ class BuilderFormSubmitView(View):
                     else:
                         form_data[key] = self.get_valid_value(values)
 
-            client.save_lead_conversations(form_data)
+            client.save_emp_conversations(form_data)
+            self._save_dynamic_data(form_data)
             return JsonResponse({'status': 'success', 'message': 'Form submitted successfully'}, status=200)
         else:
             return JsonResponse({'status': 'error', 'message': 'Form validation failed'}, status=400)
@@ -69,4 +70,9 @@ class BuilderFormSubmitView(View):
         return values_list
         
 
-
+    def _save_dynamic_data(self, form_data):
+        """
+        Save dynamic data to the database.
+        """
+        for key, value in form_data.items():
+            DynamicData.objects.create(field_name=key, field_value=value)

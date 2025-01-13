@@ -1,3 +1,7 @@
+import os
+import django
+from django.conf import settings
+
 class SRIClient(object):
     def __init__(self, app_id="76668"):
         self.host = getattr(settings, "SRI_API_HOST", "")

@@ -1,0 +1,33 @@
+{
+    "products": [
+        {
+            "product_id": 1,
+            "name": "Laptop",
+            "price": 999.99,
+            "stock_quantity": 10
+        },
+        {
+            "product_id": 2,
+            "name": "Smartphone",
+            "price": 599.99,
+            "stock_quantity": 25
+        },
+        {
+            "product_id": 3,
+            "name": "Tablet",
+            "price": 299.99,
+            "stock_quantity": 15
+        }
+    ],
+
+    
+    "website_data": [
+        {
+            "website_id": "1B",
+            "website_name": "Samsung CMS",
+            "website_url": "https://www.samsungcms.com",
+            "description": "A content management system for managing Samsung products and services.",
+            "store_location_id" : "1B"
+        }
+    ]
+}
