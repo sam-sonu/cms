@@ -6,17 +6,13 @@
 {% block content %}
     {% static_alias 'header' %}
 
-    {% comment %} <ul>
-        {% show_menu_below_id "meta" %}
-    </ul> {% endcomment %}
-
-    <div class="container">
+    {% comment %} <div class="container">
         <ul class="d-lg-block d-lg-flex d-sm-none nav" >
             {% block breadcrumb %}
                 {% show_breadcrumb %}
             {% endblock %}
         </ul>
-    </div>
+    </div> {% endcomment %}
 
 
     

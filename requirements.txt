@@ -1,3 +1,11 @@
+#########################
+## Python 3.11.5  #######
+## Django==5.1.4  #######
+## django-cms==4.1.4 ####
+#########################
+
+
+
 asgiref==3.8.1
 chardet==5.2.0
 cssselect2==0.7.0
@@ -42,3 +50,9 @@ svglib==1.5.1
 tinycss2==1.4.0
 tzdata==2024.2
 webencodings==0.5.1
+
+
+
+
+
+#https://startbootstrap.com/theme/grayscale

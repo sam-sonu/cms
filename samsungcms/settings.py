@@ -135,6 +135,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'sekizai.context_processors.sekizai',
                 'cms.context_processors.cms_settings',
+                'samsungcms.context_processors.admin_context',
             ],
         },
     },
